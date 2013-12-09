@@ -1,0 +1,881 @@
+
+Textures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Down_Quark
+  rotate: false
+  xy: 2, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Electron
+  rotate: false
+  xy: 100, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Neutron
+  rotate: false
+  xy: 198, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Proton
+  rotate: false
+  xy: 296, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Up_Quark
+  rotate: false
+  xy: 394, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+
+Textures2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Liquids and Gases/Argon
+  rotate: false
+  xy: 2, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Bromine
+  rotate: false
+  xy: 2, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Cesium
+  rotate: false
+  xy: 100, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Chlorine
+  rotate: false
+  xy: 100, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Fluorine
+  rotate: false
+  xy: 198, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Francium
+  rotate: false
+  xy: 198, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Gallium
+  rotate: false
+  xy: 296, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Helium
+  rotate: false
+  xy: 296, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Hydrogen
+  rotate: false
+  xy: 394, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Krypton
+  rotate: false
+  xy: 394, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Mercury
+  rotate: false
+  xy: 492, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Neon
+  rotate: false
+  xy: 492, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Nitrogen
+  rotate: false
+  xy: 590, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Oxygen
+  rotate: false
+  xy: 590, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Radon
+  rotate: false
+  xy: 688, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Liquids and Gases/Xenon
+  rotate: false
+  xy: 688, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+
+Textures3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Solids/Actinium
+  rotate: false
+  xy: 2, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Aluminum
+  rotate: false
+  xy: 2, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Antimony
+  rotate: false
+  xy: 100, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Arsenic
+  rotate: false
+  xy: 2, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Astatine
+  rotate: false
+  xy: 100, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Barium
+  rotate: false
+  xy: 198, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Beryllium
+  rotate: false
+  xy: 2, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Bismuth
+  rotate: false
+  xy: 100, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Boron
+  rotate: false
+  xy: 198, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Cadmium
+  rotate: false
+  xy: 296, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Calcium
+  rotate: false
+  xy: 2, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Carbon
+  rotate: false
+  xy: 100, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Cerium
+  rotate: false
+  xy: 198, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Chromium
+  rotate: false
+  xy: 296, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Cobalt
+  rotate: false
+  xy: 394, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Copper
+  rotate: false
+  xy: 2, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Dysprosium
+  rotate: false
+  xy: 100, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Erbium
+  rotate: false
+  xy: 198, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Europium
+  rotate: false
+  xy: 296, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Gadolinium
+  rotate: false
+  xy: 394, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Germanium
+  rotate: false
+  xy: 492, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Gold
+  rotate: false
+  xy: 2, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Hafnium
+  rotate: false
+  xy: 100, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Holmium
+  rotate: false
+  xy: 198, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Indium
+  rotate: false
+  xy: 296, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Iodine
+  rotate: false
+  xy: 394, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Iridium
+  rotate: false
+  xy: 492, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Iron
+  rotate: false
+  xy: 590, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Lanthanum
+  rotate: false
+  xy: 2, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Lead
+  rotate: false
+  xy: 100, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Lithium
+  rotate: false
+  xy: 198, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Lutetium
+  rotate: false
+  xy: 296, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Magnesium
+  rotate: false
+  xy: 394, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Manganese
+  rotate: false
+  xy: 492, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Molybdenum
+  rotate: false
+  xy: 590, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Neodymium
+  rotate: false
+  xy: 688, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Nickel
+  rotate: false
+  xy: 2, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Niobium
+  rotate: false
+  xy: 100, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Osmium
+  rotate: false
+  xy: 198, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Palladium
+  rotate: false
+  xy: 296, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Phosphorus
+  rotate: false
+  xy: 394, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Platinum
+  rotate: false
+  xy: 492, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Polonium
+  rotate: false
+  xy: 590, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Potassium
+  rotate: false
+  xy: 688, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Praseodymium
+  rotate: false
+  xy: 786, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Protactinium
+  rotate: false
+  xy: 2, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Radium
+  rotate: false
+  xy: 100, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Rhenium
+  rotate: false
+  xy: 198, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Rhodium
+  rotate: false
+  xy: 296, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Rubidium
+  rotate: false
+  xy: 394, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Ruthenium
+  rotate: false
+  xy: 492, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Samarium
+  rotate: false
+  xy: 590, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Scandium
+  rotate: false
+  xy: 688, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Selenium
+  rotate: false
+  xy: 786, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Silicon
+  rotate: false
+  xy: 884, 884
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Silver
+  rotate: false
+  xy: 100, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Sodium
+  rotate: false
+  xy: 198, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Strontium
+  rotate: false
+  xy: 296, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Sulfur
+  rotate: false
+  xy: 394, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Tantalum
+  rotate: false
+  xy: 492, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Tellurium
+  rotate: false
+  xy: 590, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Terbium
+  rotate: false
+  xy: 688, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Thallium
+  rotate: false
+  xy: 786, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Thorium
+  rotate: false
+  xy: 884, 786
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Thulium
+  rotate: false
+  xy: 198, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Tin
+  rotate: false
+  xy: 296, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Titanium
+  rotate: false
+  xy: 394, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Tungsten
+  rotate: false
+  xy: 492, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Uranium
+  rotate: false
+  xy: 590, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Vanadium
+  rotate: false
+  xy: 688, 492
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Ytterbium
+  rotate: false
+  xy: 786, 590
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Zinc
+  rotate: false
+  xy: 884, 688
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/Zirconium
+  rotate: false
+  xy: 296, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Solids/yttrium
+  rotate: false
+  xy: 394, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+
+Textures4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Synthetics/Americium
+  rotate: false
+  xy: 2, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Berkelium
+  rotate: false
+  xy: 2, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Bohrium
+  rotate: false
+  xy: 100, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Californium
+  rotate: false
+  xy: 2, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Copernicium
+  rotate: false
+  xy: 100, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Curium
+  rotate: false
+  xy: 198, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Darmstadtium
+  rotate: false
+  xy: 2, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Dubnium
+  rotate: false
+  xy: 100, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Einsteinium
+  rotate: false
+  xy: 198, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Fermium
+  rotate: false
+  xy: 296, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Flerovium
+  rotate: false
+  xy: 2, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Hassium
+  rotate: false
+  xy: 100, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Lawrencium
+  rotate: false
+  xy: 198, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Livermorium
+  rotate: false
+  xy: 296, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Meitnerium
+  rotate: false
+  xy: 394, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Mendelevium
+  rotate: false
+  xy: 100, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Neptunium
+  rotate: false
+  xy: 198, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Nobelium
+  rotate: false
+  xy: 296, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Plutonium
+  rotate: false
+  xy: 394, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Promethium
+  rotate: false
+  xy: 492, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Roentgenium
+  rotate: false
+  xy: 198, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Rutherfordium
+  rotate: false
+  xy: 296, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Seaborgium
+  rotate: false
+  xy: 394, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Technetium
+  rotate: false
+  xy: 492, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Ununoctium
+  rotate: false
+  xy: 590, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Ununpentium
+  rotate: false
+  xy: 296, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Ununseptium
+  rotate: false
+  xy: 394, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Synthetics/Ununtrium
+  rotate: false
+  xy: 492, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1

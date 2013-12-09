@@ -1,0 +1,47 @@
+
+UI.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Credits_Button
+  rotate: false
+  xy: 2, 510
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Help_Button
+  rotate: false
+  xy: 2, 308
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Pause_Button
+  rotate: false
+  xy: 644, 646
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Play_Button
+  rotate: false
+  xy: 2, 106
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Time_Meter_Back
+  rotate: false
+  xy: 2, 54
+  size: 500, 50
+  orig: 500, 50
+  offset: 0, 0
+  index: -1
+Time_Meter_Front
+  rotate: false
+  xy: 2, 2
+  size: 500, 50
+  orig: 500, 50
+  offset: 0, 0
+  index: -1
