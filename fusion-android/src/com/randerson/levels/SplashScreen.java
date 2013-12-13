@@ -270,6 +270,9 @@ public class SplashScreen implements Screen {
 		
 		// reset vars
 		SCREEN_MANAGER.resetGame();
+		
+		// go to main menu
+		SCREEN_MANAGER.setScreen(SCREEN_MANAGER.mainMenu);
 	}
 	
 	// method for overwritting leaderboard score
@@ -283,7 +286,7 @@ public class SplashScreen implements Screen {
 		{
 			// set the user data to the leaderbard object
 			leaderboardEntry.set("username", SCREEN_MANAGER.defaults.getData().getString("username", null));
-			leaderboardEntry.set("score", CONTROLLER.getScore());
+			leaderboardEntry.set("score", highscore);
 			leaderboardEntry.set("country", SCREEN_MANAGER.defaults.getData().getString("country", null));
 			leaderboardEntry.set("level", SCREEN_MANAGER.LEVEL);
 			

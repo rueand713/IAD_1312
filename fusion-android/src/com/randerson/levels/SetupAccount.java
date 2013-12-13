@@ -59,7 +59,7 @@ public class SetupAccount extends Activity {
 			// load up the country codes
 			loadAsset();
 			
-			boolean isSetup = defaults.getData().getBoolean("firstRun", false);
+			boolean isSetup = defaults.getData().getBoolean("setup", false);
 			boolean networkPlay = defaults.getData().getBoolean("networkplay", true);
 			
 			// check if the game has been setup previously
@@ -235,40 +235,47 @@ public class SetupAccount extends Activity {
 		// verify that all required fields have been submitted
 		if (username.length() >3 && password.length() >4 && country.length() <4 && email.length() >8)
 		{
-			// create a new user account
-			kinveyClient.user().create(username, password, new KinveyUserCallback() {
-				
-				@Override
-				public void onSuccess(User arg0) {
+			if (kinveyClient.user().isUserLoggedIn() == false)
+			{
+				// create a new user account
+				kinveyClient.user().create(username, password, new KinveyUserCallback() {
 					
-					// create a success toast
-					Toast msg = Toast.makeText(getApplicationContext(), "User account created", Toast.LENGTH_SHORT);
-					
-					// verify the msg is valid and show it
-					if (msg != null)
-					{
-						msg.show();
+					@Override
+					public void onSuccess(User arg0) {
+						
+						// create a success toast
+						Toast msg = Toast.makeText(getApplicationContext(), "User account created", Toast.LENGTH_SHORT);
+						
+						// verify the msg is valid and show it
+						if (msg != null)
+						{
+							msg.show();
+						}
+						
+						// save user data to kinvey
+						storeAccount();
 					}
 					
-					// save user data to kinvey
-					storeAccount();
-				}
-				
-				@Override
-				public void onFailure(Throwable arg0) {
-					
-					// create an error toast
-					Toast msg = Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT);
-					
-					Log.e("Sign Up Error", arg0.getMessage());
-					
-					// verify the msg is valid and show it
-					if (msg != null)
-					{
-						msg.show();
+					@Override
+					public void onFailure(Throwable arg0) {
+						
+						// create an error toast
+						Toast msg = Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT);
+						
+						Log.e("Sign Up Error", arg0.getMessage());
+						
+						// verify the msg is valid and show it
+						if (msg != null)
+						{
+							msg.show();
+						}
 					}
-				}
-			});
+				});
+			}
+			else
+			{
+				storeAccount();
+			}
 		}
 				
 	}
@@ -311,7 +318,9 @@ public class SetupAccount extends Activity {
 					accountData.putExtra("username", username);
 					accountData.putExtra("password", password);
 					accountData.putExtra("email", email);
+					accountData.putExtra("country", country);
 					accountData.putExtra("setup", true);
+					accountData.putExtra("networkplay", true);
 					
 					startActivity(accountData);
 				}
