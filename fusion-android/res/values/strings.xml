@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My LibGDX Game</string>
+    <string name="app_name">Fusion</string>
+    <string name="app_key">kid_VV98k67Kgq</string>
+    <string name="app_secret">cecb0dc1a55d4211a1959613358cd356</string>
+    <string name="username">Username (4&#8211;16 chars.)</string>
+    <string name="password">Password (5&#8211;16 chars.)</string>
+    <string name="country">Country</string>
+    <string name="email">Email</string>
+    <string name="okButton">Sign Up</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="welcome">Welcome to Fusion setup</string>
+    <string name="leaderboardTitle">Fusion Rankings</string>
+    <string name="backButton">Back</string>
+    <string name="refreshButton">Refresh</string>
+    <string name="directions">In order to track your highscore you need to sign up for the leaderboards.
+    If you don\'t want to use the leaderboard you can elect to cancel this option. You can always change this setting from the game menu.</string>
 </resources>
