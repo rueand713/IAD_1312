@@ -24,16 +24,30 @@ Neutron
   orig: 96, 96
   offset: 0, 0
   index: -1
-Proton
+No_Leaderboard
   rotate: false
   xy: 296, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Up_Quark
+Proton
   rotate: false
   xy: 394, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Up Quark
+  rotate: false
+  xy: 492, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+Yes_Leaderboard
+  rotate: false
+  xy: 590, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
