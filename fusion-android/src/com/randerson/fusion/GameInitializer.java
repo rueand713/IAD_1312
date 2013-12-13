@@ -53,13 +53,14 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
         		
         		// verify the defaults are created properly
         		// and save the user application data if it does not exist
-        		if (defaults != null && defaults.getData().getBoolean("firstRun", false))
+        		if (defaults != null && defaults.getData().getBoolean("setup", false) == false)
         		{
-        			defaults.setBool("firstRun", setup);
+        			defaults.setBool("setup", setup);
         			defaults.setString("username", username);
         			defaults.setString("password", password);
         			defaults.setString("country", country);
         			defaults.setString("email", email);
+        			defaults.setBool("networkplay", networkPlay);
         		}
         		
         		// verify that leaderboards can and or should be enabled
@@ -96,7 +97,7 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
         cfg.useGL20 = true;
         
         // get the context
-        Context context = this.getApplicationContext();
+        Context context = getApplicationContext();
         
         // get the app creds
         String secret = context.getResources().getString(com.randerson.fusion.R.string.app_secret);
