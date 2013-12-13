@@ -5,12 +5,19 @@ filter: Nearest,Nearest
 repeat: none
 Credits_Button
   rotate: false
-  xy: 2, 510
+  xy: 2, 712
   size: 640, 200
   orig: 640, 200
   offset: 0, 0
   index: -1
 Help_Button
+  rotate: false
+  xy: 2, 510
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Leaderboard_Button
   rotate: false
   xy: 2, 308
   size: 640, 200
@@ -19,7 +26,7 @@ Help_Button
   index: -1
 Pause_Button
   rotate: false
-  xy: 644, 646
+  xy: 644, 848
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
