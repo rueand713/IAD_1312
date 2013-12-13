@@ -16,6 +16,8 @@ public class Tutorial implements Screen {
 	OrthographicCamera CAMERA;
 	FusionScreenManager SCREEN_MANAGER;
 	BitmapFont FONT;
+	boolean disableTouch = true;
+	int disableCount = 90;
 	
 	// class constructor
 	public Tutorial(FusionScreenManager manager)
@@ -42,11 +44,25 @@ public class Tutorial implements Screen {
 		 
 		 batch.end();
 		 
-		 if (Gdx.input.isTouched(1))
+		 if (Gdx.input.isTouched(1) && disableTouch == false)
 		 {
 			 SCREEN_MANAGER.titleMusic.stop();
 			 
 			 SCREEN_MANAGER.setScreen(SCREEN_MANAGER.mainMenu);
+			 
+			 // disable the touch
+			 disableTouch = true;
+			 disableCount = 90;
+		 }
+		 
+		 // decrement the counter
+		 if (disableCount >0)
+		 {
+			 disableCount--;
+		 }
+		 else
+		 {
+			 disableTouch = false;
 		 }
 		
 	}
@@ -63,6 +79,9 @@ public class Tutorial implements Screen {
 		batch = new SpriteBatch(1024, 2);
 		CAMERA = GameManager.getCamera(SCREEN_MANAGER.DEVICE_WIDTH, SCREEN_MANAGER.DEVICE_HEIGHT);
 		FONT = GameManager.getBitmapFont(Color.WHITE, 2.0f);
+		
+		disableTouch = true;
+		disableCount = 90;
 	}
 
 	@Override

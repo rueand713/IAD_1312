@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -14,6 +15,7 @@ import com.randerson.fusion.GameManager;
 
 public class MainMenu implements Screen {
 
+	SpriteBatch batch;
 	FusionScreenManager SCREEN_MANAGER;
 	OrthographicCamera CAMERA;
 	Vector3 TOUCH_POSITION;
@@ -23,7 +25,13 @@ public class MainMenu implements Screen {
 	Rectangle playButton;
 	Rectangle credsButton;
 	Rectangle helpButton;
+	Rectangle leaderboardButton;
+	Rectangle leaderboardToggleButton;
+	TextureRegion leaderboard;
 	boolean RESET = false;
+	boolean networkplay = false;
+	boolean disableTouch = true;
+	int disableCount = 90;
 	
 	
 	// class constructor
@@ -45,13 +53,31 @@ public class MainMenu implements Screen {
 		 Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		 Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		SpriteBatch batch = new SpriteBatch();
+		 // check if networkplay is on or off
+		 if (SCREEN_MANAGER.defaults != null)
+		 {
+			 networkplay = SCREEN_MANAGER.defaults.getData().getBoolean("networkplay", false);
+			 
+			 // set the texture to the networkplay on or off
+			 if (networkplay)
+			 {
+				 leaderboard = SCREEN_MANAGER.leaderboardEnabled;
+			 }
+			 else
+			 {
+				 leaderboard = SCREEN_MANAGER.leaderboardDisabled;
+			 }
+		 }
+		 
+		// begin rendering
 		batch.setProjectionMatrix(CAMERA.combined);
 		batch.begin();
 		batch.draw(SCREEN_MANAGER.titleScreen, 0, 0, SCREEN_MANAGER.DEVICE_WIDTH, SCREEN_MANAGER.DEVICE_HEIGHT);
 		batch.draw(SCREEN_MANAGER.playButton, playButton.x, playButton.y, playButton.width, playButton.height);
+		batch.draw(SCREEN_MANAGER.leaderboardButton, leaderboardButton.x, leaderboardButton.y, leaderboardButton.width, leaderboardButton.height);
 		batch.draw(SCREEN_MANAGER.helpButton, helpButton.x, helpButton.y, helpButton.width, helpButton.height);
 		batch.draw(SCREEN_MANAGER.creditsButton, credsButton.x, credsButton.y, credsButton.width, credsButton.height);
+		batch.draw(leaderboard, leaderboardToggleButton.x, leaderboardToggleButton.y, leaderboardToggleButton.width, leaderboardToggleButton.height);
 		batch.end();
 		
 		CAMERA.update();
@@ -59,11 +85,20 @@ public class MainMenu implements Screen {
 		// check for a screen touch
 		if (Gdx.input.isTouched(0) || Gdx.input.justTouched())
 		{
-			TOUCH_POSITION = GameManager.getTouchVector(0);
-			CAMERA.unproject(TOUCH_POSITION);
-			
-			// set the bool for tracking a touch true
-			touched = true;
+			if (disableTouch == false)
+			{
+				TOUCH_POSITION = GameManager.getTouchVector(0);
+				CAMERA.unproject(TOUCH_POSITION);
+				
+				// set the bool for tracking a touch true
+				touched = true;
+				
+				// disable touch events
+				disableTouch = true;
+				
+				// reset the counter
+				disableCount = 90;
+			}
 		}
 		else
 		{
@@ -96,6 +131,56 @@ public class MainMenu implements Screen {
 			{
 				SCREEN_MANAGER.setScreen(SCREEN_MANAGER.credits);
 			}
+			else if (GameManager.overlaps(touch, leaderboardButton, true))
+			{
+				// get the leaderboard data and display it
+				fetchLeaderboard();
+			}
+			else if (GameManager.overlaps(touch, leaderboardToggleButton, true))
+			{
+				if (SCREEN_MANAGER.defaults != null)
+				{
+					//String message = "";
+					
+					if (SCREEN_MANAGER.defaults.getData().getBoolean("networkplay", false))
+					{
+						// if it is true already, toggle it to false
+						SCREEN_MANAGER.defaults.setBool("networkplay", false);
+						
+						// set the message
+						//message = "Leaderboards have been disabled";
+					}
+					else
+					{
+						// if it is false already, toggle it to true
+						SCREEN_MANAGER.defaults.setBool("networkplay", true);
+						
+						// set the message
+						//message = "Leaderboards have been enabled";
+					}
+					
+					/*
+					// create a new toast to inform the user
+					Toast msg = Toast.makeText(SCREEN_MANAGER.CONTEXT, message, Toast.LENGTH_SHORT);
+					
+					// verify the msg object is valid
+					if (msg != null)
+					{
+						msg.show();
+					}*/
+				}
+			}
+		}
+		
+		// decrement the counter
+		if (disableCount > 0)
+		{
+			disableCount--;
+		}
+		else
+		{
+			// re enable touch events
+			disableTouch = false;
 		}
 	}
 
@@ -115,14 +200,21 @@ public class MainMenu implements Screen {
 		// init the camera
 		CAMERA = GameManager.getCamera(SCREEN_MANAGER.DEVICE_WIDTH, SCREEN_MANAGER.DEVICE_HEIGHT);
 		
+		// create the sprite batch
+		batch = new SpriteBatch();
+		
 		// get the button sizes proportionate to the device screen
 		buttonWidth = (int) (SCREEN_MANAGER.DEVICE_WIDTH * 0.4f);
 		buttonHeight = (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.125f);
+		int lbuttonWidth = (int) (SCREEN_MANAGER.DEVICE_WIDTH * 0.1f);
+		int lbuttonHeight = (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.1f);
 		
 		// setup the screen buttons boundaries
 		playButton = new Rectangle(20, 200 + buttonHeight, buttonWidth, buttonHeight);
-		credsButton = new Rectangle(20, 100 + buttonHeight, buttonWidth, buttonHeight);;
-		helpButton = new Rectangle(20, 0 + buttonHeight, buttonWidth, buttonHeight);;
+		credsButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (buttonWidth + 20), 200 + buttonHeight, buttonWidth, buttonHeight);
+		leaderboardButton = new Rectangle(20, 100 + buttonHeight, buttonWidth, buttonHeight);;
+		helpButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (buttonWidth + 20), 100 + buttonHeight, buttonWidth, buttonHeight);;
+		leaderboardToggleButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (lbuttonWidth + 20), 0, lbuttonWidth, lbuttonHeight);
 		
 		// create the touch object
 		TOUCH_POSITION = new Vector3();
@@ -133,7 +225,7 @@ public class MainMenu implements Screen {
 			// load up all of the games assets in one fell swoop
 			
 			// load the atlases and textures
-			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
+			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(500, 1);
 			SCREEN_MANAGER.titleScreen = GameManager.getTexture("TitleScreen.png");
 			SCREEN_MANAGER.tutorialImage = GameManager.getTexture("Help_Screen.png");
 			SCREEN_MANAGER.bgImage1 = GameManager.getTexture("Bg1.png");
@@ -141,12 +233,15 @@ public class MainMenu implements Screen {
 			SCREEN_MANAGER.creditsImage = GameManager.getTexture("Credits_Screen.png");
 			SCREEN_MANAGER.gameTextures = GameManager.getAtlas("Textures.atlas");
 			SCREEN_MANAGER.uiTextures = GameManager.getAtlas("UI.atlas");
+			SCREEN_MANAGER.leaderboardButton = SCREEN_MANAGER.uiTextures.findRegion("Leaderboard_Button");
 			SCREEN_MANAGER.playButton = SCREEN_MANAGER.uiTextures.findRegion("Play_Button");
 			SCREEN_MANAGER.helpButton = SCREEN_MANAGER.uiTextures.findRegion("Help_Button");
 			SCREEN_MANAGER.creditsButton = SCREEN_MANAGER.uiTextures.findRegion("Credits_Button");
 			SCREEN_MANAGER.pauseButton = SCREEN_MANAGER.uiTextures.findRegion("Pause_Button");
 			SCREEN_MANAGER.timeMeterBack = SCREEN_MANAGER.uiTextures.findRegion("Time_Meter_Back");
 			SCREEN_MANAGER.timeMeterFront = SCREEN_MANAGER.uiTextures.findRegion("Time_Meter_Front");
+			SCREEN_MANAGER.leaderboardEnabled = SCREEN_MANAGER.gameTextures.findRegion("Yes_Leaderboard");
+			SCREEN_MANAGER.leaderboardDisabled = SCREEN_MANAGER.gameTextures.findRegion("No_Leaderboard");
 			SCREEN_MANAGER.proton = SCREEN_MANAGER.gameTextures.findRegion("Proton");
 			SCREEN_MANAGER.neutron = SCREEN_MANAGER.gameTextures.findRegion("Neutron");
 			SCREEN_MANAGER.electron = SCREEN_MANAGER.gameTextures.findRegion("Electron");
@@ -296,6 +391,19 @@ public class MainMenu implements Screen {
 			// reset the player data object
 			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
 		}
+		
+		// to ease accidental touching events
+		disableTouch = true;
+		disableCount = 90;
+	}
+	
+	public void fetchLeaderboard()
+	{
+		// turn off the sounds
+		SCREEN_MANAGER.titleMusic.stop();
+		
+		// show the leaderboard
+		SCREEN_MANAGER.Android.startIntent(SCREEN_MANAGER.leaderboardView);
 	}
 
 	@Override

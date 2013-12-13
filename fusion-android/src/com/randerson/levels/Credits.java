@@ -19,6 +19,8 @@ public class Credits implements Screen {
 	BitmapFont FONT;
 	BitmapFont TITLE_FONT;
 	BitmapFont TOUCH_FONT;
+	boolean disableTouch = true;
+	int disableCount = 90;
 	
 	public Credits(FusionScreenManager manager)
 	{
@@ -50,8 +52,12 @@ public class Credits implements Screen {
 		 GameManager.drawFont(batch, HEADER, "Artwork & Programming", 50, SCREEN_MANAGER.DEVICE_HEIGHT - 530);
 		 GameManager.drawFont(batch, FONT, "Rueben Anderson", 60, SCREEN_MANAGER.DEVICE_HEIGHT - 580);
 		 
-		 // draw the continue text
-		 GameManager.drawFont(batch, TOUCH_FONT, "Dual Touch Screen To Continue", (SCREEN_MANAGER.DEVICE_WIDTH / 2) - 180, 75);
+		 // show when touching is enabled
+		 if (disableTouch == false)
+		 {
+			// draw the continue text
+			 GameManager.drawFont(batch, TOUCH_FONT, "Dual Touch Screen To Continue", (SCREEN_MANAGER.DEVICE_WIDTH / 2) - 180, 75);
+		 }
 		 
 		 // end rendering
 		 batch.end();
@@ -59,14 +65,28 @@ public class Credits implements Screen {
 		 CAMERA.update();
 		 
 		 // check for screen dual touch
-		 if (Gdx.input.isTouched(1))
+		 if (Gdx.input.isTouched(1) && disableTouch == false)
 		 {
 			 // stops the title music so it can start again
 			 SCREEN_MANAGER.titleMusic.stop();
 			 
 			 // go back to the title screen
-			 SCREEN_MANAGER.setScreen(SCREEN_MANAGER.mainMenu);
+			 SCREEN_MANAGER.setScreen(SCREEN_MANAGER.mainMenu); 
 			 
+			 // re initiate the disabled touching
+			 disableTouch = true;
+			 disableCount = 90;
+		 }
+		 
+		 // decrement the counter
+		 if (disableCount >0)
+		 {
+			 disableCount--;
+		 }
+		 else
+		 {
+			 // reset the touch
+			 disableTouch = false;
 		 }
 		
 	}
@@ -86,6 +106,9 @@ public class Credits implements Screen {
 		FONT = GameManager.getBitmapFont(Color.WHITE, 1.5f);
 		TOUCH_FONT = GameManager.getBitmapFont(Color.WHITE, 1f);
 		HEADER = GameManager.getBitmapFont(Color.WHITE, 1.85f);
+		
+		disableTouch = true;
+		disableCount = 90;
 	}
 
 	@Override
