@@ -21,6 +21,8 @@ public class MainMenu implements Screen {
 	Vector3 TOUCH_POSITION;
 	int buttonHeight;
 	int buttonWidth;
+	int lbuttonWidth;
+	int lbuttonHeight;
 	boolean touched = false;
 	Rectangle playButton;
 	Rectangle credsButton;
@@ -29,27 +31,21 @@ public class MainMenu implements Screen {
 	Rectangle leaderboardToggleButton;
 	TextureRegion leaderboard;
 	boolean RESET = false;
-	boolean networkplay = false;
+	boolean networkplay;
 	boolean disableTouch = true;
 	int disableCount = 90;
 	
 	
 	// class constructor
-	public MainMenu(FusionScreenManager manager, boolean isReset)
+	public MainMenu(FusionScreenManager manager)
 	{
 		SCREEN_MANAGER = manager;
-		
-		// to reset the player data
-		if (isReset)
-		{
-			RESET = true;
-		}
 	}
 	
 	@Override
 	public void render(float delta) {
 		
-		// clear the screen
+		 // clear the screen
 		 Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		 Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
@@ -77,7 +73,12 @@ public class MainMenu implements Screen {
 		batch.draw(SCREEN_MANAGER.leaderboardButton, leaderboardButton.x, leaderboardButton.y, leaderboardButton.width, leaderboardButton.height);
 		batch.draw(SCREEN_MANAGER.helpButton, helpButton.x, helpButton.y, helpButton.width, helpButton.height);
 		batch.draw(SCREEN_MANAGER.creditsButton, credsButton.x, credsButton.y, credsButton.width, credsButton.height);
-		batch.draw(leaderboard, leaderboardToggleButton.x, leaderboardToggleButton.y, leaderboardToggleButton.width, leaderboardToggleButton.height);
+		
+		if (leaderboard != null)
+		{
+			batch.draw(leaderboard, leaderboardToggleButton.x, leaderboardToggleButton.y, leaderboardToggleButton.width, leaderboardToggleButton.height);
+		}
+		
 		batch.end();
 		
 		CAMERA.update();
@@ -159,15 +160,9 @@ public class MainMenu implements Screen {
 						//message = "Leaderboards have been enabled";
 					}
 					
-					/*
-					// create a new toast to inform the user
-					Toast msg = Toast.makeText(SCREEN_MANAGER.CONTEXT, message, Toast.LENGTH_SHORT);
 					
-					// verify the msg object is valid
-					if (msg != null)
-					{
-						msg.show();
-					}*/
+					// create a new toast to inform the user
+					//SCREEN_MANAGER.Android.showToast(message);
 				}
 			}
 		}
@@ -206,8 +201,8 @@ public class MainMenu implements Screen {
 		// get the button sizes proportionate to the device screen
 		buttonWidth = (int) (SCREEN_MANAGER.DEVICE_WIDTH * 0.4f);
 		buttonHeight = (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.125f);
-		int lbuttonWidth = (int) (SCREEN_MANAGER.DEVICE_WIDTH * 0.1f);
-		int lbuttonHeight = (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.1f);
+		lbuttonWidth = (int) (SCREEN_MANAGER.DEVICE_WIDTH * 0.1f);
+		lbuttonHeight = (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.1f);
 		
 		// setup the screen buttons boundaries
 		playButton = new Rectangle(20, 200 + buttonHeight, buttonWidth, buttonHeight);
@@ -225,7 +220,7 @@ public class MainMenu implements Screen {
 			// load up all of the games assets in one fell swoop
 			
 			// load the atlases and textures
-			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(500, 1);
+			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
 			SCREEN_MANAGER.titleScreen = GameManager.getTexture("TitleScreen.png");
 			SCREEN_MANAGER.tutorialImage = GameManager.getTexture("Help_Screen.png");
 			SCREEN_MANAGER.bgImage1 = GameManager.getTexture("Bg1.png");
@@ -386,15 +381,25 @@ public class MainMenu implements Screen {
 			SCREEN_MANAGER.titleMusic.play();
 		}
 		
-		if (RESET)
-		{
-			// reset the player data object
-			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
-		}
-		
 		// to ease accidental touching events
 		disableTouch = true;
 		disableCount = 90;
+		
+		// check if networkplay is on or off
+		 if (SCREEN_MANAGER.defaults != null)
+		 {
+			 networkplay = SCREEN_MANAGER.defaults.getData().getBoolean("networkplay", false);
+			 
+			 // set the texture to the networkplay on or off
+			 if (networkplay)
+			 {
+				 leaderboard = SCREEN_MANAGER.leaderboardEnabled;
+			 }
+			 else
+			 {
+				 leaderboard = SCREEN_MANAGER.leaderboardDisabled;
+			 }
+		 }
 	}
 	
 	public void fetchLeaderboard()
@@ -436,6 +441,12 @@ public class MainMenu implements Screen {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void reset()
+	{
+		// reset the player data object
+		SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
 	}
 
 }
