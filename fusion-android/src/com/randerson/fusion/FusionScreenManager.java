@@ -1,5 +1,12 @@
 package com.randerson.fusion;
 
+import java.util.HashMap;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -7,7 +14,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.kinvey.android.AsyncAppData;
+import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyUserCallback;
+import com.kinvey.java.User;
 import com.randerson.entities.PlayerHandler;
+import com.randerson.kinvey.LeaderboardEntity;
 import com.randerson.levels.ActOne;
 import com.randerson.levels.Credits;
 import com.randerson.levels.MainMenu;
@@ -15,7 +27,7 @@ import com.randerson.levels.SplashScreen;
 import com.randerson.levels.Tutorial;
 
 public class FusionScreenManager extends Game {
-
+	
 	// create the screen objects
 	public Tutorial tutorial;
 	public MainMenu mainMenu;
@@ -23,9 +35,9 @@ public class FusionScreenManager extends Game {
 	public Credits credits;
 	public SplashScreen splashScreen;
 	
-	// create the game music and sound objects
-	
 	// create the game graphics objects
+	
+	// elementary particles
 	public TextureRegion upQuark;
 	public TextureRegion downQuark;
 	public TextureRegion proton;
@@ -163,6 +175,9 @@ public class FusionScreenManager extends Game {
 	public TextureRegion pauseButton;
 	public TextureRegion timeMeterFront;
 	public TextureRegion timeMeterBack;
+	public TextureRegion leaderboardEnabled;
+	public TextureRegion leaderboardDisabled;
+	public TextureRegion leaderboardButton;
 	public Texture bgImage1;
 	public Texture splashImage;
 	public Texture titleScreen;
@@ -187,6 +202,42 @@ public class FusionScreenManager extends Game {
 	public Sound particleSound;
 	public Sound levelComplete;
 	
+	// android application context and class reference
+	public Activity CONTEXT;
+	public HashMap<String, String> APP_CREDS;
+	public ApplicationDefaults defaults;
+	public boolean leaderboardsEnabled = true;
+	public AsyncAppData<LeaderboardEntity> leaderboard;
+	public AndroidExtender Android;
+	
+	// Kinvey client
+	public Client kinveyClient;
+	
+	// android objects
+	public Intent leaderboardView;
+	
+	public FusionScreenManager(Activity context, HashMap<String, String> creds, boolean networkPlay, Intent leaderboardScreen)
+	{
+		CONTEXT = context;
+		APP_CREDS = creds;
+		
+		// setup the prefs object
+		defaults = new ApplicationDefaults(CONTEXT);
+		
+		// set the leaderboard status
+		leaderboardsEnabled = networkPlay;
+		
+		// set the leaderboard pointer
+		leaderboardView = leaderboardScreen;
+		
+		// set android reference
+		Android = (AndroidExtender) context;
+		
+		// initialize the kinvey client and appData objects
+		kinveyClient = new Client.Builder((String) creds.get("appKey"), (String) creds.get("appSecret"), context).build();
+		leaderboard = kinveyClient.appData("Leaderboards", LeaderboardEntity.class);
+	}
+	
 	@Override
 	public void create() {
 		
@@ -197,8 +248,16 @@ public class FusionScreenManager extends Game {
 		credits = new Credits(this);
 		splashScreen = new SplashScreen(this);
 		
-		// show the main screen
-		setScreen(mainMenu);
+		if (leaderboardsEnabled == true)
+		{
+			// sign into kinvey account
+			signIn();
+		}
+		else
+		{
+			// show the main screen
+			setScreen(mainMenu);
+		}
 		
 	}
 	
@@ -222,5 +281,72 @@ public class FusionScreenManager extends Game {
 		// go to main menu
 		setScreen(mainMenu);
 	}
+	
+	public void signIn()
+	{
+		
+		// verify that the prefs object is valid
+		if (defaults != null)
+		{
+			// get the kinvey account credentials
+			final String username = defaults.getData().getString("username", null);
+			final String password = defaults.getData().getString("password", null);
+			
+			// verify there are valid credentials
+			if (username != null && password != null)
+			{
+				
+				if (kinveyClient.user().isUserLoggedIn() == false)
+				{
+					// initiate a login request
+					kinveyClient.user().login(username, password, new KinveyUserCallback() {
+						
+						@Override
+						public void onSuccess(User arg0) {
+							
+							// create a new success message
+							Toast msg = Toast.makeText(CONTEXT, "User: " + username + "Logged In", Toast.LENGTH_SHORT);
+							
+							// verify the toast is valid before displaying it
+							if (msg != null)
+							{
+								msg.show();
+							}
+							
+							// show the main screen
+							setScreen(mainMenu);
+						}
+						
+						@Override
+						public void onFailure(Throwable arg0) {
+							
+							// create a new fail message
+							Toast msg = Toast.makeText(CONTEXT, "Log In Attempt Failed, Leaderboards disabled.", Toast.LENGTH_SHORT);
+							
+							Log.e("Sign In Error", arg0.getMessage());
+							
+							// verify the toast is valid before displaying it
+							if (msg != null)
+							{
+								msg.show();
+							}
+							
+							// disable network play
+							leaderboardsEnabled = false;
+							
+							// show the main screen
+							setScreen(mainMenu);
+						}
+					});
+				}
+				else
+				{
+					// show the main screen - use is logged in already
+					setScreen(mainMenu);
+				}
+			}
+		}
+	}
+
 	
 }
