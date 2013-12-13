@@ -243,7 +243,7 @@ public class FusionScreenManager extends Game {
 		
 		// initialize all of the game scenes
 		tutorial = new Tutorial(this);
-		mainMenu = new MainMenu(this, false);
+		mainMenu = new MainMenu(this);
 		actOne = new ActOne(this);
 		credits = new Credits(this);
 		splashScreen = new SplashScreen(this);
@@ -258,7 +258,6 @@ public class FusionScreenManager extends Game {
 			// show the main screen
 			setScreen(mainMenu);
 		}
-		
 	}
 	
 	public void resetAct()
@@ -273,13 +272,10 @@ public class FusionScreenManager extends Game {
 		
 		// reset the objects in the main screen
 		// and reset the player data controller object
-		mainMenu = new MainMenu(this, true);
+		mainMenu.reset();
 		
 		// reset the first level objects
 		resetAct();
-		
-		// go to main menu
-		setScreen(mainMenu);
 	}
 	
 	public void signIn()
