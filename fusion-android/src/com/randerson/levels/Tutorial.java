@@ -39,8 +39,11 @@ public class Tutorial implements Screen {
 		 // draw the bg image
 		 batch.draw(SCREEN_MANAGER.tutorialImage, 0, 0, SCREEN_MANAGER.DEVICE_WIDTH, SCREEN_MANAGER.DEVICE_HEIGHT);
 		 
-		 // draws the title text
-		 GameManager.drawFont(batch, FONT, "Dual Touch Screen To Continue", (SCREEN_MANAGER.DEVICE_WIDTH / 2) - 150, (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.26f));
+		 if (disableTouch == false)
+		 {
+			 // draws the title text
+			 GameManager.drawFont(batch, FONT, "Dual Touch Screen To Continue", (SCREEN_MANAGER.DEVICE_WIDTH / 2) - 150, (int) (SCREEN_MANAGER.DEVICE_HEIGHT * 0.26f));
+		 }
 		 
 		 batch.end();
 		 
