@@ -61,6 +61,7 @@ public class ActOne implements Screen {
 	SpriteBatch batch2;
 	int BONUS = 0;
 	int TARGET_SCORE;
+	Color color;
 	
 	// class constructor
 	public ActOne(FusionScreenManager manager)
@@ -121,7 +122,7 @@ public class ActOne implements Screen {
 		 batch.end();
 		 
 		 // draw the actual time meter
-		 GameManager.drawRectangle(shapeRender, CAMERA, 11, 0, controller.getMeterLength(meterWidth), timeMeterHeight, Color.GRAY);
+		 GameManager.drawRectangle(shapeRender, CAMERA, 11, 0, controller.getMeterLength(meterWidth), timeMeterHeight, color);
 		 
 		 // draw the foreground meter
 		 batch2.setProjectionMatrix(CAMERA.combined);
@@ -574,6 +575,32 @@ public class ActOne implements Screen {
 				 BONUS -= 50;
 			 }
 			 
+			 // change the timer meter color based on time remaining
+			 if (controller.getTime() <= (9000 * 0.25f))
+			 {
+				// change the color when needed only
+				 if (color != Color.RED)
+				 {
+					 color = Color.RED;
+				 }
+			 }
+			 else if (controller.getTime() <= (9000 * 0.75))
+			 {
+				// change the color when needed only
+				 if (color != Color.YELLOW)
+				 {
+					 color = Color.YELLOW;
+				 }
+			 }
+			 else
+			 {
+				 // change the color when needed only
+				 if (color != Color.GREEN)
+				 {
+					 color = Color.GREEN;
+				 }
+			 }
+			 
 			 // check the decay time
 			 if (controller.getTime() < 0)
 			 {
@@ -645,6 +672,8 @@ public class ActOne implements Screen {
 	@Override
 	public void show() {
 
+		color = Color.GREEN;
+		
 		if (SCREEN_MANAGER.sceneMusic != null)
 		{
 			// begin playing the menu sound
