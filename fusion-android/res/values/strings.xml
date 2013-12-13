@@ -13,6 +13,12 @@
     <string name="leaderboardTitle">Fusion Rankings</string>
     <string name="backButton">Back</string>
     <string name="refreshButton">Refresh</string>
+    <string name="user">PLAYER</string>
+    <string name="userLevel">LEVEL</string>
+    <string name="score">SCORE</string>
+    <string name="origin">COUNTRY</string>
+    <string name="query">Query Type</string>
+    <string name="queryDirections">Select a query type and refresh to make the request</string>
     <string name="directions">In order to track your highscore you need to sign up for the leaderboards.
     If you don\'t want to use the leaderboard you can elect to cancel this option. You can always change this setting from the game menu.</string>
 </resources>

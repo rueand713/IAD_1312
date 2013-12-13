@@ -3,22 +3,36 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
     
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical" android:padding="10dip" android:layout_margin="3dip">
         
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/leaderboardTitle"/>
+        <TextView style="@style/HeaderStyle" android:layout_width="match_parent" android:layout_height="wrap_content" 
+            android:text="@string/leaderboardTitle" android:padding="5dip"/>
+        
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/queryDirections"
+            android:padding="10dip" android:layout_margin="3dip"/>
+        
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+            android:padding="10dip" android:layout_margin="3dip">
+            
+            <TextView android:layout_width="0dip" android:layout_weight="0.5" android:layout_height="wrap_content" android:text="@string/query"/>
+            
+            <Spinner android:id="@+id/querySpinner" android:layout_width="0dip" android:layout_weight="0.5" android:layout_height="wrap_content"/>
+            
+        </LinearLayout>
         
         <TableLayout android:id="@+id/scoreTable" android:layout_width="match_parent"
-            android:layout_height="wrap_content">   
-        </TableLayout>
+            	android:layout_height="wrap_content"></TableLayout>
         
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" android:layout_margin="2dip" android:padding="10dip">
         
             <Button android:id="@+id/backBtn" style="?android:attr/buttonBarButtonStyle" android:layout_weight="0.5" android:layout_width="0dip" 
-                android:layout_height="wrap_content" android:text="@string/backButton"/>
+                android:layout_height="wrap_content" android:text="@string/backButton" android:background="@android:color/holo_blue_dark" 
+                android:layout_margin="2dip"/>
             
             <Button android:id="@+id/refreshBtn" style="?android:attr/buttonBarButtonStyle" android:layout_weight="0.5" android:layout_width="0dip" 
-                android:layout_height="wrap_content" android:text="@string/refreshButton"/>
+                android:layout_height="wrap_content" android:text="@string/refreshButton" android:background="@android:color/holo_blue_dark"
+                android:layout_margin="2dip"/>
             
         </LinearLayout>
             
