@@ -1,6 +1,7 @@
 package com.randerson.levels;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.randerson.entities.Achievement;
 import com.randerson.entities.BoxActor;
 import com.randerson.entities.Particle;
 import com.randerson.entities.ParticleFactory;
@@ -541,6 +543,9 @@ public class ActOne implements Screen {
 					 PARTICLES[index] = null;
 				 }
 			 }
+			
+			// check for achievement requirements met
+			checkForAchievement();
 			 
 			// increment the timer
 			 timer++;
@@ -792,6 +797,244 @@ public class ActOne implements Screen {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void checkForAchievement()
+	{
+		// set message object
+		CharSequence message = "";
+		
+		// get the player scores
+		int score = controller.getLifetimeScore();
+		int score2 = controller.getScore();
+		
+		// get the player level
+		int level = SCREEN_MANAGER.LEVEL;
+		
+		int multiplier = (int) controller.getMultiplier();
+		
+		boolean update = false;
+		
+		// get the player achievements
+		HashMap<String, Achievement> achievements = controller.getAchievements();
+		
+		// check if the achievement has never been earend
+		if (level >= 5 && achievements.get("reached_level_5").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_5").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_5", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_5").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (level >= 10 && achievements.get("reached_level_10").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_10").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_10", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_10").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (level >= 25 && achievements.get("reached_level_25").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_25").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_25", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_25").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (level >= 50 && achievements.get("reached_level_50").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_50").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_50", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_50").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (level >= 75 && achievements.get("reached_level_75").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_75").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_75", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_75").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (level >= 100 && achievements.get("reached_level_100").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_level_100").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_level_100", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_level_100").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score2 >= 10000 && achievements.get("earned_10k_points").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("earned_10k_points").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("earned_10k_points", true);
+			
+			// set the message
+			message = "\"" + achievements.get("earned_10k_points").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score2 >= 50000 && achievements.get("earned_50k_points").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("earned_50k_points").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("earned_50k_points", true);
+			
+			// set the message
+			message = "\"" + achievements.get("earned_50k_points").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score2 >= 200000 && achievements.get("earned_200k_points").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("earned_200k_points").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("earned_200k_points", true);
+			
+			// set the message
+			message = "\"" + achievements.get("earned_200k_points").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score2 >= 500000 && achievements.get("earned_500k_points").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("earned_500k_points").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("earned_500k_points", true);
+			
+			// set the message
+			message = "\"" + achievements.get("earned_500k_points").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score >= 1000000 || score2 >= 1000000 && achievements.get("earned_1m_points").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("earned_1m_points").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("earned_1m_points", true);
+			
+			// set the message
+			message = "\"" + achievements.get("earned_1m_points").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (multiplier >= 5 && achievements.get("reached_5x_multiplier").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("reached_5x_multiplier").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("reached_5x_multiplier", true);
+			
+			// set the message
+			message = "\"" + achievements.get("reached_5x_multiplier").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		// check if the achievement has never been earend
+		if (score < 1 && controller.getTime() <= 0 && achievements.get("failed_to_try").obtained == false)
+		{
+			// set the achievement to true
+			achievements.get("failed_to_try").obtained = true;
+			
+			// save the achievement to prefs
+			SCREEN_MANAGER.defaults.setBool("failed_to_try", true);
+			
+			// set the message
+			message = "\"" + achievements.get("failed_to_try").getName() + "\" Achieved";
+			
+			// set the bool to update
+			update = true;
+		}
+		
+		if (update == true) 
+		{
+			// update the achievement object
+			controller.setAchievements(achievements);
+			
+			// toast the earned award
+			SCREEN_MANAGER.Android.showToast(message);
+		}
 		
 	}
 
