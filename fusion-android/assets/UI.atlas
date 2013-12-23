@@ -3,35 +3,61 @@ UI.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Award_Button
+  rotate: false
+  xy: 2, 810
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Back_Button
+  rotate: false
+  xy: 2, 608
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
 Credits_Button
   rotate: false
-  xy: 2, 712
+  xy: 2, 406
   size: 640, 200
   orig: 640, 200
   offset: 0, 0
   index: -1
 Help_Button
   rotate: false
-  xy: 2, 510
+  xy: 2, 204
   size: 640, 200
   orig: 640, 200
   offset: 0, 0
   index: -1
 Leaderboard_Button
   rotate: false
-  xy: 2, 308
+  xy: 2, 2
   size: 640, 200
   orig: 640, 200
   offset: 0, 0
   index: -1
 Pause_Button
   rotate: false
-  xy: 644, 848
+  xy: 644, 946
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+
+UI2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 Play_Button
+  rotate: false
+  xy: 2, 308
+  size: 640, 200
+  orig: 640, 200
+  offset: 0, 0
+  index: -1
+Share_Button
   rotate: false
   xy: 2, 106
   size: 640, 200
