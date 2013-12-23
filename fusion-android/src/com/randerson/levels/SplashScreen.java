@@ -93,7 +93,11 @@ public class SplashScreen implements Screen {
 						{
 							highscore = CONTROLLER.getScore();
 							
+							// save the highscore
 							SCREEN_MANAGER.defaults.setInt("highscore", highscore);
+							
+							// save the new lifetime score
+							SCREEN_MANAGER.defaults.setInt("lifetime_score", (CONTROLLER.getLifetimeScore() + CONTROLLER.getScore()));
 						}
 					}
 					else
