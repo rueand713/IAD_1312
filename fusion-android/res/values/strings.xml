@@ -3,6 +3,10 @@
     <string name="app_name">Fusion</string>
     <string name="app_key">kid_VV98k67Kgq</string>
     <string name="app_secret">cecb0dc1a55d4211a1959613358cd356</string>
+    <string name="twitter_secret">jBFdsjj9KnKAQNIszYZQ079QCu15iVxqylzP5p9qPvo</string>
+    <string name="twiter_key">2QBUol99HG0MJQuDwbv25Q</string>
+    <string name="access_token">1172507377-IoTi1zu4OZ5oXvX4lpgSqJkgIyRr61BLC7UnQc6</string>
+    <string name="access_token_secret">ijA9y6dInkx8wPwoz3NTVJ3vmlezODWKksSF9QKaIpEg8</string>
     <string name="username">Username (4&#8211;16 chars.)</string>
     <string name="password">Password (5&#8211;16 chars.)</string>
     <string name="country">Country</string>
