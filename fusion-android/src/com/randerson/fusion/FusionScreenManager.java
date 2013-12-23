@@ -21,10 +21,12 @@ import com.kinvey.java.User;
 import com.randerson.entities.PlayerHandler;
 import com.randerson.kinvey.LeaderboardEntity;
 import com.randerson.levels.ActOne;
+import com.randerson.levels.Awards;
 import com.randerson.levels.Credits;
 import com.randerson.levels.MainMenu;
 import com.randerson.levels.SplashScreen;
 import com.randerson.levels.Tutorial;
+import com.randerson.twitter4j.TwitterAccount;
 
 public class FusionScreenManager extends Game {
 	
@@ -34,6 +36,7 @@ public class FusionScreenManager extends Game {
 	public ActOne actOne;
 	public Credits credits;
 	public SplashScreen splashScreen;
+	public Awards achievementScreen;
 	
 	// create the game graphics objects
 	
@@ -171,13 +174,31 @@ public class FusionScreenManager extends Game {
 	// hud and atlas objects
 	public TextureRegion playButton;
 	public TextureRegion helpButton;
+	public TextureRegion backButton;
+	public TextureRegion shareButton;
 	public TextureRegion creditsButton;
 	public TextureRegion pauseButton;
+	public TextureRegion achievementsButton;
 	public TextureRegion timeMeterFront;
 	public TextureRegion timeMeterBack;
 	public TextureRegion leaderboardEnabled;
 	public TextureRegion leaderboardDisabled;
 	public TextureRegion leaderboardButton;
+	public TextureRegion blankAcheivement;
+	public TextureRegion reachedLevel5;
+	public TextureRegion reachedLevel10;
+	public TextureRegion reachedLevel25;
+	public TextureRegion reachedLevel50;
+	public TextureRegion reachedLevel75;
+	public TextureRegion reachedLevel100;
+	public TextureRegion earned10k;
+	public TextureRegion earned50k;
+	public TextureRegion earned200k;
+	public TextureRegion earned500k;
+	public TextureRegion earned1m;
+	public TextureRegion joinedLeaderboard;
+	public TextureRegion quitterAward;
+	public TextureRegion reached5xMultiplier;
 	public Texture bgImage1;
 	public Texture splashImage;
 	public Texture titleScreen;
@@ -186,6 +207,16 @@ public class FusionScreenManager extends Game {
 	public Animation particleAnimations;
 	public TextureAtlas gameTextures;
 	public TextureAtlas uiTextures;
+	public TextureAtlas awardTextures;
+	
+	// android application context and class reference
+	public Activity CONTEXT;
+	public HashMap<String, String> APP_CREDS;
+	public ApplicationDefaults defaults;
+	public boolean leaderboardsEnabled = true;
+	public AsyncAppData<LeaderboardEntity> leaderboard;
+	public AndroidExtender Android;
+	public TwitterAccount Twitter;
 	
 	// game objects
 	public PlayerHandler CONTROLLER;
@@ -202,14 +233,6 @@ public class FusionScreenManager extends Game {
 	public Sound particleSound;
 	public Sound levelComplete;
 	
-	// android application context and class reference
-	public Activity CONTEXT;
-	public HashMap<String, String> APP_CREDS;
-	public ApplicationDefaults defaults;
-	public boolean leaderboardsEnabled = true;
-	public AsyncAppData<LeaderboardEntity> leaderboard;
-	public AndroidExtender Android;
-	
 	// Kinvey client
 	public Client kinveyClient;
 	
@@ -220,6 +243,9 @@ public class FusionScreenManager extends Game {
 	{
 		CONTEXT = context;
 		APP_CREDS = creds;
+		
+		// setup the twitter account class
+		//Twitter = new TwitterAccount(CONTEXT);
 		
 		// setup the prefs object
 		defaults = new ApplicationDefaults(CONTEXT);
@@ -247,6 +273,7 @@ public class FusionScreenManager extends Game {
 		actOne = new ActOne(this);
 		credits = new Credits(this);
 		splashScreen = new SplashScreen(this);
+		achievementScreen = new Awards(this);
 		
 		if (leaderboardsEnabled == true)
 		{
