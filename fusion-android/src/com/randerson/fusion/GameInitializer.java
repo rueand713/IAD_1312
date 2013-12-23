@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -21,11 +22,17 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
 	boolean hasConnection = false;
 	boolean leaderboards = false;
 	boolean networkPlay = false;
+	Handler UIThread;
 	ApplicationDefaults defaults;
+	Context CONTEXT;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        CONTEXT = getApplicationContext();
+        
+        UIThread = new Handler();
         
         // create a new instance of the app prefs object
     	defaults = new ApplicationDefaults(getApplicationContext());
@@ -61,6 +68,18 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
         			defaults.setString("country", country);
         			defaults.setString("email", email);
         			defaults.setBool("networkplay", networkPlay);
+        			
+        			// set the achievements
+        			defaults.setBool("joined_leaderboard", true);
+        			
+        			// inform user that leaderboards are off
+        			Toast msg = Toast.makeText(CONTEXT, "\"True Competitor\" Achieved",  Toast.LENGTH_SHORT);
+                	
+                	if (msg != null)
+                	{
+                		msg.show();
+                	}
+        			
         		}
         		
         		// verify that leaderboards can and or should be enabled
@@ -75,7 +94,7 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
         if (leaderboards == false)
 		{
 			// inform user that leaderboards are off
-			Toast msg = Toast.makeText(getApplicationContext(), "Leaderboards have been disabled.",  Toast.LENGTH_SHORT);
+			Toast msg = Toast.makeText(CONTEXT, "Leaderboards have been disabled.",  Toast.LENGTH_SHORT);
         	
         	if (msg != null)
         	{
@@ -127,14 +146,22 @@ public class GameInitializer extends AndroidApplication implements AndroidExtend
 	}
 
 	@Override
-	public void showToast(String message) {
+	public void showToast(final CharSequence message) {
 
-		Toast msg = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-		
-		if (msg != null)
-		{
-			msg.show();
-		}
+		UIThread.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				Toast msg = Toast.makeText(CONTEXT, message, Toast.LENGTH_SHORT);
+				
+				if (msg != null)
+				{
+					msg.show();
+				}
+				
+			}
+		});
 	}
 	
 	
