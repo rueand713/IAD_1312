@@ -38,7 +38,7 @@ Proton
   orig: 96, 96
   offset: 0, 0
   index: -1
-Up Quark
+Up_Quark
   rotate: false
   xy: 492, 2
   size: 96, 96
@@ -57,112 +57,112 @@ Textures2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Liquids and Gases/Argon
+Liquids_and_Gases/Argon
   rotate: false
   xy: 2, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Bromine
+Liquids_and_Gases/Bromine
   rotate: false
   xy: 2, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Cesium
+Liquids_and_Gases/Cesium
   rotate: false
   xy: 100, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Chlorine
+Liquids_and_Gases/Chlorine
   rotate: false
   xy: 100, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Fluorine
+Liquids_and_Gases/Fluorine
   rotate: false
   xy: 198, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Francium
+Liquids_and_Gases/Francium
   rotate: false
   xy: 198, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Gallium
+Liquids_and_Gases/Gallium
   rotate: false
   xy: 296, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Helium
+Liquids_and_Gases/Helium
   rotate: false
   xy: 296, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Hydrogen
+Liquids_and_Gases/Hydrogen
   rotate: false
   xy: 394, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Krypton
+Liquids_and_Gases/Krypton
   rotate: false
   xy: 394, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Mercury
+Liquids_and_Gases/Mercury
   rotate: false
   xy: 492, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Neon
+Liquids_and_Gases/Neon
   rotate: false
   xy: 492, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Nitrogen
+Liquids_and_Gases/Nitrogen
   rotate: false
   xy: 590, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Oxygen
+Liquids_and_Gases/Oxygen
   rotate: false
   xy: 590, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Radon
+Liquids_and_Gases/Radon
   rotate: false
   xy: 688, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-Liquids and Gases/Xenon
+Liquids_and_Gases/Xenon
   rotate: false
   xy: 688, 2
   size: 96, 96
