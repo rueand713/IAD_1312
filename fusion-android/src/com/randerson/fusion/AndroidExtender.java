@@ -6,6 +6,6 @@ public interface AndroidExtender {
 
 	public void startIntent(Intent intent);
 	
-	public void showToast(String message);
+	public void showToast(CharSequence message);
 	
 }
