@@ -24,6 +24,7 @@ public class MainMenu implements Screen {
 	int lbuttonWidth;
 	int lbuttonHeight;
 	boolean touched = false;
+	Rectangle achievementsButton;
 	Rectangle playButton;
 	Rectangle credsButton;
 	Rectangle helpButton;
@@ -33,7 +34,7 @@ public class MainMenu implements Screen {
 	boolean RESET = false;
 	boolean networkplay;
 	boolean disableTouch = true;
-	int disableCount = 90;
+	int disableCount = 60;
 	
 	
 	// class constructor
@@ -73,6 +74,7 @@ public class MainMenu implements Screen {
 		batch.draw(SCREEN_MANAGER.leaderboardButton, leaderboardButton.x, leaderboardButton.y, leaderboardButton.width, leaderboardButton.height);
 		batch.draw(SCREEN_MANAGER.helpButton, helpButton.x, helpButton.y, helpButton.width, helpButton.height);
 		batch.draw(SCREEN_MANAGER.creditsButton, credsButton.x, credsButton.y, credsButton.width, credsButton.height);
+		batch.draw(SCREEN_MANAGER.achievementsButton, achievementsButton.x, achievementsButton.y, achievementsButton.width, achievementsButton.height);
 		
 		if (leaderboard != null)
 		{
@@ -94,11 +96,8 @@ public class MainMenu implements Screen {
 				// set the bool for tracking a touch true
 				touched = true;
 				
-				// disable touch events
-				disableTouch = true;
-				
 				// reset the counter
-				disableCount = 90;
+				disableCount = 60;
 			}
 		}
 		else
@@ -108,8 +107,11 @@ public class MainMenu implements Screen {
 		}
 		
 		// check if a touch was registered to check for button click
-		if (touched)
+		if (touched && disableTouch == false)
 		{
+			// disable touch events
+			disableTouch = true;
+			
 			// create a vector2 from the touch position
 			Vector2 touch = GameManager.getVect2(TOUCH_POSITION);
 			
@@ -137,11 +139,15 @@ public class MainMenu implements Screen {
 				// get the leaderboard data and display it
 				fetchLeaderboard();
 			}
+			else if (GameManager.overlaps(touch, achievementsButton, true))
+			{
+				SCREEN_MANAGER.setScreen(SCREEN_MANAGER.achievementScreen);
+			}
 			else if (GameManager.overlaps(touch, leaderboardToggleButton, true))
 			{
 				if (SCREEN_MANAGER.defaults != null)
 				{
-					//String message = "";
+					CharSequence message = "";
 					
 					if (SCREEN_MANAGER.defaults.getData().getBoolean("networkplay", false))
 					{
@@ -149,7 +155,7 @@ public class MainMenu implements Screen {
 						SCREEN_MANAGER.defaults.setBool("networkplay", false);
 						
 						// set the message
-						//message = "Leaderboards have been disabled";
+						message = "Leaderboards have been disabled";
 					}
 					else
 					{
@@ -157,12 +163,12 @@ public class MainMenu implements Screen {
 						SCREEN_MANAGER.defaults.setBool("networkplay", true);
 						
 						// set the message
-						//message = "Leaderboards have been enabled";
+						message = "Leaderboards have been enabled";
 					}
 					
 					
 					// create a new toast to inform the user
-					//SCREEN_MANAGER.Android.showToast(message);
+					SCREEN_MANAGER.Android.showToast(message);
 				}
 			}
 		}
@@ -207,9 +213,10 @@ public class MainMenu implements Screen {
 		// setup the screen buttons boundaries
 		playButton = new Rectangle(20, 200 + buttonHeight, buttonWidth, buttonHeight);
 		credsButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (buttonWidth + 20), 200 + buttonHeight, buttonWidth, buttonHeight);
-		leaderboardButton = new Rectangle(20, 100 + buttonHeight, buttonWidth, buttonHeight);;
+		leaderboardButton = new Rectangle(20, 100 + buttonHeight, buttonWidth, buttonHeight);
 		helpButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (buttonWidth + 20), 100 + buttonHeight, buttonWidth, buttonHeight);;
 		leaderboardToggleButton = new Rectangle(SCREEN_MANAGER.DEVICE_WIDTH - (lbuttonWidth + 20), 0, lbuttonWidth, lbuttonHeight);
+		achievementsButton = new Rectangle(20, buttonHeight, buttonWidth, buttonHeight);
 		
 		// create the touch object
 		TOUCH_POSITION = new Vector3();
@@ -217,8 +224,7 @@ public class MainMenu implements Screen {
 		// verify that the assets have not been previously loaded
 		if (SCREEN_MANAGER.gameLoaded == false)
 		{
-			// load up all of the games assets in one fell swoop
-			
+			// load up all of the games assets in one swoop
 			// load the atlases and textures
 			SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
 			SCREEN_MANAGER.titleScreen = GameManager.getTexture("TitleScreen.png");
@@ -228,10 +234,29 @@ public class MainMenu implements Screen {
 			SCREEN_MANAGER.creditsImage = GameManager.getTexture("Credits_Screen.png");
 			SCREEN_MANAGER.gameTextures = GameManager.getAtlas("Textures.atlas");
 			SCREEN_MANAGER.uiTextures = GameManager.getAtlas("UI.atlas");
+			SCREEN_MANAGER.awardTextures = GameManager.getAtlas("Achievements.atlas");
+			SCREEN_MANAGER.blankAcheivement = SCREEN_MANAGER.awardTextures.findRegion("Not_Earned");
+			SCREEN_MANAGER.quitterAward = SCREEN_MANAGER.awardTextures.findRegion("Quitter");
+			SCREEN_MANAGER.reached5xMultiplier = SCREEN_MANAGER.awardTextures.findRegion("Multiplier");
+			SCREEN_MANAGER.joinedLeaderboard = SCREEN_MANAGER.awardTextures.findRegion("Signed_Up");
+			SCREEN_MANAGER.reachedLevel5 = SCREEN_MANAGER.awardTextures.findRegion("Level5");
+			SCREEN_MANAGER.reachedLevel10 = SCREEN_MANAGER.awardTextures.findRegion("Level10");
+			SCREEN_MANAGER.reachedLevel25 = SCREEN_MANAGER.awardTextures.findRegion("Level25");
+			SCREEN_MANAGER.reachedLevel50 = SCREEN_MANAGER.awardTextures.findRegion("Level50");
+			SCREEN_MANAGER.reachedLevel75 = SCREEN_MANAGER.awardTextures.findRegion("Level75");
+			SCREEN_MANAGER.reachedLevel100 = SCREEN_MANAGER.awardTextures.findRegion("Level100");
+			SCREEN_MANAGER.earned10k = SCREEN_MANAGER.awardTextures.findRegion("10k");
+			SCREEN_MANAGER.earned50k = SCREEN_MANAGER.awardTextures.findRegion("50k");
+			SCREEN_MANAGER.earned200k = SCREEN_MANAGER.awardTextures.findRegion("200k");
+			SCREEN_MANAGER.earned500k = SCREEN_MANAGER.awardTextures.findRegion("500k");
+			SCREEN_MANAGER.earned1m = SCREEN_MANAGER.awardTextures.findRegion("1m");
 			SCREEN_MANAGER.leaderboardButton = SCREEN_MANAGER.uiTextures.findRegion("Leaderboard_Button");
+			SCREEN_MANAGER.achievementsButton = SCREEN_MANAGER.uiTextures.findRegion("Award_Button");
+			SCREEN_MANAGER.backButton = SCREEN_MANAGER.uiTextures.findRegion("Back_Button");
 			SCREEN_MANAGER.playButton = SCREEN_MANAGER.uiTextures.findRegion("Play_Button");
 			SCREEN_MANAGER.helpButton = SCREEN_MANAGER.uiTextures.findRegion("Help_Button");
 			SCREEN_MANAGER.creditsButton = SCREEN_MANAGER.uiTextures.findRegion("Credits_Button");
+			SCREEN_MANAGER.shareButton = SCREEN_MANAGER.uiTextures.findRegion("Share_Button");
 			SCREEN_MANAGER.pauseButton = SCREEN_MANAGER.uiTextures.findRegion("Pause_Button");
 			SCREEN_MANAGER.timeMeterBack = SCREEN_MANAGER.uiTextures.findRegion("Time_Meter_Back");
 			SCREEN_MANAGER.timeMeterFront = SCREEN_MANAGER.uiTextures.findRegion("Time_Meter_Front");
@@ -372,6 +397,8 @@ public class MainMenu implements Screen {
 			
 			// set the gameloaded bool to true
 			SCREEN_MANAGER.gameLoaded = true;
+			
+			loadPlayerData();
 		}
 		
 		if (SCREEN_MANAGER.titleMusic != null)
@@ -433,7 +460,7 @@ public class MainMenu implements Screen {
 		if (SCREEN_MANAGER.titleMusic != null)
 		{
 			// begin playing the menu sound
-			SCREEN_MANAGER.titleMusic.pause();
+			SCREEN_MANAGER.titleMusic.play();
 		}
 	}
 
@@ -447,6 +474,50 @@ public class MainMenu implements Screen {
 	{
 		// reset the player data object
 		SCREEN_MANAGER.CONTROLLER = new PlayerHandler(9000, 1);
+		
+		// reload the achievements
+		loadPlayerData();
+	}
+	
+	public void loadPlayerData()
+	{
+		// load the saved achievement data
+		boolean lv5 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_5", false);
+		boolean lv10 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_10", false);
+		boolean lv25 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_25", false);
+		boolean lv50 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_50", false);
+		boolean lv75 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_75", false);
+		boolean lv100 = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_100", false);
+		boolean _10k = SCREEN_MANAGER.defaults.getData().getBoolean("earned_10k_points", false);
+		boolean _50k = SCREEN_MANAGER.defaults.getData().getBoolean("earned_50k_points", false);
+		boolean _200k = SCREEN_MANAGER.defaults.getData().getBoolean("earned_200k_points", false);
+		boolean _500k = SCREEN_MANAGER.defaults.getData().getBoolean("earned_500k_points", false);
+		boolean _1m = SCREEN_MANAGER.defaults.getData().getBoolean("earned_1m_points", false);
+		boolean _5x = SCREEN_MANAGER.defaults.getData().getBoolean("reached_level_100", false);
+		boolean signedUp = SCREEN_MANAGER.defaults.getData().getBoolean("joined_leaderboard", false);
+		boolean quitter = SCREEN_MANAGER.defaults.getData().getBoolean("failed_to_try", false);
+		
+		// set the data to the controller
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_5").obtained = lv5;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_10").obtained = lv10;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_25").obtained = lv25;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_50").obtained = lv50;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_75").obtained = lv75;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_level_100").obtained = lv100;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("earned_10k_points").obtained = _10k;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("earned_50k_points").obtained = _50k;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("earned_200k_points").obtained = _200k;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("earned_500k_points").obtained = _500k;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("earned_1m_points").obtained = _1m;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("reached_5x_multiplier").obtained = _5x;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("joined_leaderboard").obtained = signedUp;
+		SCREEN_MANAGER.CONTROLLER.getAchievements().get("failed_to_try").obtained = quitter;
+		
+		// load the lifetime score
+		int score = SCREEN_MANAGER.defaults.getData().getInt("lifetime_score", 0);
+		
+		// set the score to the controller
+		SCREEN_MANAGER.CONTROLLER.setLifeTimeScore(score);
 	}
 
 }
