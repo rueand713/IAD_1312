@@ -1,11 +1,14 @@
 package com.randerson.entities;
 
+import java.util.HashMap;
+
 import com.randerson.entities.Particle.ParticleType;
 import com.randerson.entities.SubAtomic.ParticleClass;
 
 public class PlayerHandler {
 
 	protected int SCORE = 0;
+	protected int LIFETIME_SCORE = 0;
 	protected int BONUS = 0;
 	protected int[] TIME = {0, 0};
 	protected float MULTIPLIER = 1;
@@ -15,12 +18,31 @@ public class PlayerHandler {
 	protected String NAME = "Player 1";
 	protected int multiplierTime = 0;
 	protected SubAtomic[] SELECTED;
+	protected HashMap<String, Achievement> ACHIEVEMENTS;
 	
 	public PlayerHandler(int time, int multiplier)
 	{
+		// init the global player values
 		TIME[0] = TIME[1] = time;
 		MULTIPLIER = multiplier;
 		SELECTED = new SubAtomic[2];
+		ACHIEVEMENTS = new HashMap<String, Achievement>();
+		
+		// set the available achievements
+		ACHIEVEMENTS.put("reached_level_5", new Achievement("Making Progress", "Reached Level 5"));
+		ACHIEVEMENTS.put("reached_level_10", new Achievement("No Letting Up", "Reached Level 10"));
+		ACHIEVEMENTS.put("reached_level_25", new Achievement("25 Down", "Reached Level 25"));
+		ACHIEVEMENTS.put("reached_level_50", new Achievement("Halftime", "Reached Level 50"));
+		ACHIEVEMENTS.put("reached_level_75", new Achievement("Fusion Mogul", "Reached Level 75"));
+		ACHIEVEMENTS.put("reached_level_100", new Achievement("Fusion Master", "Reached Level 100"));
+		ACHIEVEMENTS.put("earned_10k_points", new Achievement("100 Squared", "Earned 10,000 Points"));
+		ACHIEVEMENTS.put("earned_50k_points", new Achievement("50 Stacks", "Earned 50,000 Points"));
+		ACHIEVEMENTS.put("earned_200k_points", new Achievement("Silver Status", "Earned 200,000 Points"));
+		ACHIEVEMENTS.put("earned_500k_points", new Achievement("Gold Status", "Earned 500,000 Points"));
+		ACHIEVEMENTS.put("earned_1m_points", new Achievement("A Millie", "Earned 1,000,000 Points"));
+		ACHIEVEMENTS.put("joined_leaderboard", new Achievement("True Competitor", "Signed Up For Leaderboards"));
+		ACHIEVEMENTS.put("reached_5x_multiplier", new Achievement("Quintuple", "Obtained A 5x Multiplier"));
+		ACHIEVEMENTS.put("failed_to_try", new Achievement("For Quitters Everywhere", "Finished A Game With 0 Points"));
 	}
 	
 	// method for setting the score
@@ -33,6 +55,37 @@ public class PlayerHandler {
 	public int getScore()
 	{
 		return SCORE;
+	}
+	
+	// method for setting the overall score obtained throughout all sessions
+	public void setLifeTimeScore(int score)
+	{
+		LIFETIME_SCORE = score;
+	}
+	
+	// method for retrieving player's total score
+	public int getLifetimeScore()
+	{
+		return LIFETIME_SCORE;
+	}
+	
+	// method for getting the achievements object
+	public HashMap<String, Achievement> getAchievements()
+	{
+		return ACHIEVEMENTS;
+	}
+	
+	// method for setting data to the achievements object
+	public void addAchievement(String key, Achievement achievement)
+	{
+		// set the name to its earned state
+		ACHIEVEMENTS.put(key, achievement);
+	}
+	
+	// method for adding a full achievement map
+	public void setAchievements(HashMap<String, Achievement> achievements)
+	{
+		ACHIEVEMENTS = achievements;
 	}
 	
 	// method for setting the name
